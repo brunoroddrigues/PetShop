@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Pet</title>
+    <style>
+        body{background-color: aqua;}
+        button{color: red;}
+        button{font-family: sans-serif;}
+        button{font-size: 120%;}
+        button:hover{background-color: red; color: black;}
+        button{margin-right: 30px;}
+        label{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        label{font-size: larger;}
+        h1{font-family: Arial, Helvetica, sans-serif;}
+        h1{font-size: 50px;}
+        h1{background-image: linear-gradient(red,red,red,black,red,red);
+        background-clip: text;
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        line-height: 1.1;}
+        label{ background-image: linear-gradient(red,red,red,black,red,red);
+        background-clip: text;
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        line-height: 1.1;}
+        #erro1,#erro2,#erro3,#resultado{color: red;}
+    </style>
+</head>
+<body>
+   
+    <h1>PetShop</h1>
+    <br><br>
+    <label>Tutor:</label>
+    <input type="text" id="tutor" placeholder="Digite o nome">
+    <div id="erro1"></div>
+    <br>
+    <label>Pet:</label>
+    <input type="text" id="pet" placeholder="Digite a raça do pet">
+    <div id="erro2"></div>
+    <br><br><br>
+    <label for="banho">Banho 70$</label>
+    <br><br>
+    <img src="imagem1.jpg" alt="Banho">
+    <br><br>
+    <label>Serviço Realizado:</label>
+    <input type="checkbox" id="banho" value="70.00">
+    <div id="erro3"></div>
+    <br><br><br>
+    <label for="tosa">Tosa 80$:</label>
+    <br><br>
+    <img src="imagem2.jpg" alt="tosa" width="300px">
+    <br><br>
+    <label>Serviço Realizado:</label>
+    <input type="checkbox" id="tosa" value="80.00">
+    <div id="erro3"></div>
+    <br><br><br>
+    <div id="resultado"></div>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <script>
+        function calcular()
+         {
+            document.getElementById("erro1").innerHTML = "";
+            document.getElementById("erro2").innerHTML = "";
+            document.getElementById("erro3").innerHTML = "";
+            document.getElementById("resultado").innerHTML = ""; 
+            let tutor = document.getElementById("tutor").value;
+            let pet = document.getElementById("pet").value;
+            let banho = document.getElementById("banho");
+            let tosa = document.getElementById("tosa");
+            console.log("Tutor " + tutor);
+            console.log("Pet " + pet);
+            console.log("Banho " + banho.value);
+            console.log("Tosa " + tosa.value);
+
+            let total = 0;
+
+            if(tutor === '') {
+                document.getElementById("erro1").innerHTML = "Preencha o campo";
+            }
+            if(pet === '') {
+                document.getElementById("erro2").innerHTML = "Preencha o campo";
+            }
+            if(banho.checked) {
+                total = total + parseFloat(banho.value);
+            }   
+            if(tosa.checked) {
+                total = total + parseFloat(tosa.value);
+            }
+            if(!banho.checked && !tosa.checked) {
+                document.getElementById("erro3").innerHTML = "Selecione pelo menos uma opção";
+            }
+            if(total > 0) {
+                document.getElementById("resultado").innerHTML = "Total: $" + total.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
